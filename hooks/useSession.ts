@@ -7,8 +7,20 @@ export function useSession() {
   const { data: user, isLoading, error } = useQuery<User | null>({
     queryKey: ['session'],
     queryFn: async () => {
-      try { return await api.auth.me(); }
-      catch { return null; }
+      try {
+        return await api.auth.me();
+      } catch (err: any) {
+        // Access token expired — try to silently refresh then retry
+        if (err.message?.startsWith('HTTP 401') || err.message === 'HTTP 401') {
+          try {
+            await api.auth.refresh();
+            return await api.auth.me();
+          } catch {
+            return null;
+          }
+        }
+        return null;
+      }
     },
     staleTime: 5 * 60 * 1000,
     retry: false,

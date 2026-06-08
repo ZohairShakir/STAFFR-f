@@ -40,6 +40,7 @@ export function useSocket() {
       socket.off('application.statusChanged');
       socket.off('project.updated');
       socket.off('audit.created');
+      socket.off('user.created');
     };
   }, [qc]);
 }
