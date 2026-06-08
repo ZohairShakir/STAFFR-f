@@ -64,16 +64,16 @@ export function DashboardContent() {
 
   return (
     <div className="space-y-7">
-      <div className="flex items-end justify-between">
+      <div className="flex flex-wrap items-end justify-between gap-2">
         <div>
-          <h1 className="text-[28px] font-bold font-syne text-[var(--text)] leading-tight">
+          <h1 className="text-[24px] sm:text-[28px] font-bold font-syne text-[var(--text)] leading-tight">
             Welcome back, {firstName}
           </h1>
           <p className="mt-1.5 text-[13px] text-[var(--text-muted)] leading-relaxed">
             Here&apos;s what&apos;s happening across your projects.
           </p>
         </div>
-        <span className="text-[11px] font-medium text-[var(--text-faint)] uppercase tracking-wider">
+        <span className="hidden sm:block text-[11px] font-medium text-[var(--text-faint)] uppercase tracking-wider">
           {new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
         </span>
       </div>
@@ -195,7 +195,7 @@ export function DashboardContent() {
             <h2 className="section-heading">Admin Overview</h2>
             <Link href="/admin" className="link-accent">Manage users →</Link>
           </div>
-          <div className="grid grid-cols-3 gap-5">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-5">
             <div className="space-y-1.5">
               <p className="text-[11px] font-semibold text-[var(--text-faint)] uppercase tracking-wider">Users</p>
               <p className="text-[28px] font-bold font-syne text-[var(--text)] tracking-tight">{users?.length ?? '—'}</p>

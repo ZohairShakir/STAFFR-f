@@ -71,7 +71,7 @@ export function ApplicationReviewContent() {
               <div
                 key={app.id}
                 className={cn(
-                  'list-row flex items-center gap-4 px-5 py-4',
+                  'list-row flex flex-wrap sm:flex-nowrap items-center gap-3 px-4 sm:px-5 py-3 sm:py-4',
                   updateMutation.variables && (updateMutation.variables as { id?: string }).id === app.id && 'border-[#4F6EF7]/30',
                   idx === 0 && 'animate-fade-up',
                 )}
@@ -96,9 +96,9 @@ export function ApplicationReviewContent() {
                     { value: 'WITHDRAWN', label: 'Withdrawn' },
                   ]}
                   disabled={updateMutation.isPending}
-                  className="h-8 w-[130px]"
+                  className="h-8 w-[120px] sm:w-[130px]"
                 />
-                <span className="text-[11px] text-[var(--text-faint)] font-mono shrink-0">
+                <span className="hidden sm:block text-[11px] text-[var(--text-faint)] font-mono shrink-0">
                   {new Date(app.createdAt).toLocaleDateString()}
                 </span>
               </div>

@@ -37,7 +37,12 @@ const nav = [
   { href: '/admin', label: 'Admin', icon: Settings, roles: ['SUPER_ADMIN'] as const },
 ];
 
-export function NavSidebar() {
+interface NavSidebarProps {
+  isOpen?: boolean;
+  onClose?: () => void;
+}
+
+export function NavSidebar({ isOpen = false, onClose }: NavSidebarProps) {
   const pathname = usePathname();
   const router = useRouter();
   const queryClient = useQueryClient();
@@ -59,8 +64,23 @@ export function NavSidebar() {
     window.location.href = '/login';
   };
 
+  const handleNav = (href: string) => {
+    router.push(href);
+    onClose?.();
+  };
+
   return (
-    <aside className="sidebar flex flex-col h-screen sticky top-0 z-10">
+    <aside
+      className={cn(
+        'sidebar flex flex-col h-screen',
+        // Desktop: sticky within the flex row
+        'md:sticky md:top-0 md:translate-x-0',
+        // Mobile: fixed drawer sliding in from the left
+        'fixed inset-y-0 left-0 z-40',
+        'transition-transform duration-200 ease-in-out',
+        isOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0',
+      )}
+    >
         <div className="flex items-center gap-2.5 px-5 h-14 border-b border-[var(--border)]">
           <div className="w-7 h-7 rounded-lg bg-[#4F6EF7] flex items-center justify-center shadow-sm shadow-[#4F6EF7]/20">
             <MessageSquare className="text-white" size={14} />
@@ -77,14 +97,14 @@ export function NavSidebar() {
           </button>
         </div>
 
-      <nav className="flex-1 px-3 py-4 space-y-0.5">
+      <nav className="flex-1 px-3 py-4 space-y-0.5 overflow-y-auto">
         {filteredNav.map((item) => {
           const Icon = item.icon;
           const active = pathname === item.href || pathname.startsWith(`${item.href}/`);
           return (
             <button
               key={item.href}
-              onClick={() => router.push(item.href)}
+              onClick={() => handleNav(item.href)}
               className={cn(
                 'flex items-center gap-3 w-full px-3 py-2 rounded-xl text-[13px] font-medium',
                 'transition-all duration-150 cursor-pointer relative',
@@ -107,7 +127,7 @@ export function NavSidebar() {
         {user && (
           <button
             type="button"
-            onClick={() => router.push('/profile')}
+            onClick={() => handleNav('/profile')}
             className={cn(
               'flex items-center gap-3 w-full px-3 py-2.5 rounded-xl bg-[var(--surface-2)] border border-[var(--border)]',
               'transition-all duration-150 cursor-pointer text-left',

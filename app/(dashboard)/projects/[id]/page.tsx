@@ -166,7 +166,7 @@ export default function ProjectDetailPage() {
               className="form-field form-textarea"
             />
           </div>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="form-label">Deadline</label>
               <input type="date" {...register('deadline')} className="form-field" />
@@ -209,11 +209,11 @@ export default function ProjectDetailPage() {
   return (
     <RoleGate allowedRoles={['TEAM_MEMBER', 'PROJECT_MANAGER', 'ADMIN', 'SUPER_ADMIN']}>
       <div className="space-y-6">
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
           <div className="flex items-center gap-4">
             <Button variant="ghost" onClick={() => router.push('/projects')} icon={ArrowLeft} className="cursor-pointer" />
-            <div>
-              <div className="flex items-center gap-2.5">
+            <div className="min-w-0">
+              <div className="flex items-center gap-2.5 flex-wrap">
                 <h1 className="page-heading">{project.title}</h1>
                 <Badge status={project.status} />
               </div>
@@ -222,7 +222,7 @@ export default function ProjectDetailPage() {
               </p>
             </div>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 ml-12 sm:ml-0">
             {project.status === 'DRAFT' && isManager && (
               <Button variant="ghost" onClick={() => publishMutation.mutate()} loading={publishMutation.isPending} className="cursor-pointer">
                 Publish

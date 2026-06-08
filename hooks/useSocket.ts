@@ -35,12 +35,19 @@ export function useSocket() {
       console.log(`[WS] New user joined: ${data.name} (${data.role})`);
     });
 
+    socket.on('user.roleUpdated', () => {
+      // Refresh session when user's role is updated
+      qc.invalidateQueries({ queryKey: ['session'] });
+      qc.invalidateQueries({ queryKey: ['users'] });
+    });
+
     return () => {
       socket.off('application.created');
       socket.off('application.statusChanged');
       socket.off('project.updated');
       socket.off('audit.created');
       socket.off('user.created');
+      socket.off('user.roleUpdated');
     };
   }, [qc]);
 }
