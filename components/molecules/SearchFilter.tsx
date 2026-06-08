@@ -35,7 +35,7 @@ export function SearchFilter({
         onChange={(e: ChangeEvent<HTMLInputElement>) => onChange(e.target.value)}
         placeholder={placeholder}
         className={cn(
-          'h-9 w-64 rounded-xl border border-[var(--border)] bg-white pl-9 pr-3 text-sm',
+          'h-9 w-64 rounded-xl border border-(--border) bg-surface pl-9 pr-3 text-sm',
           'text-[var(--text)] placeholder:text-[var(--text-faint)]',
           'transition-colors duration-150 shadow-sm',
           'focus:outline-none focus:border-[#4F6EF7] focus:ring-1 focus:ring-[#4F6EF7]',

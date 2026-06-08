@@ -44,6 +44,10 @@ export default function RootLayout({
       className={`${syne.variable} ${dmSans.variable} ${dmMono.variable} h-full antialiased`}
       suppressHydrationWarning
     >
+      <head>
+        {/* Blocks paint until theme is read from localStorage — prevents white flash on dark mode */}
+        <script dangerouslySetInnerHTML={{ __html: `(function(){var t=localStorage.getItem('staffr-theme');document.documentElement.dataset.theme=t==='dark'?'dark':'light';})()` }} />
+      </head>
       <body className="min-h-full flex flex-col bg-[var(--bg)]">
         <ThemeProvider>
           <QueryProvider>

@@ -10,21 +10,21 @@ export type ToastProps = {
 
 export function Toast({ title, description, variant = 'info' }: ToastProps) {
   const variantStyles = {
-    info: 'border-blue-200 bg-blue-50',
-    success: 'border-emerald-200 bg-emerald-50',
-    error: 'border-red-200 bg-red-50',
+    info:    'border-blue-500/20 bg-blue-500/10',
+    success: 'border-emerald-500/20 bg-emerald-500/10',
+    error:   'border-red-500/20 bg-red-500/10',
   };
 
   const titleStyles = {
-    info: 'text-blue-900',
-    success: 'text-emerald-900',
-    error: 'text-red-900',
+    info:    'text-blue-500',
+    success: 'text-emerald-500',
+    error:   'text-red-500',
   };
 
   return (
     <div
       className={cn(
-        'pointer-events-auto w-80 rounded-xl border p-4 shadow-lg bg-white',
+        'pointer-events-auto w-80 rounded-xl border p-4 shadow-lg bg-surface',
         'animate-fade-up',
         variantStyles[variant],
       )}
@@ -32,7 +32,7 @@ export function Toast({ title, description, variant = 'info' }: ToastProps) {
       aria-live="polite"
     >
       <p className={cn('text-sm font-medium', titleStyles[variant])}>{title}</p>
-      {description && <p className="mt-1 text-xs text-[var(--text-muted)]">{description}</p>}
+      {description && <p className="mt-1 text-xs text-(--text-muted)">{description}</p>}
     </div>
   );
 }

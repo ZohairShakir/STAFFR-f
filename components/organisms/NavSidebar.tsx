@@ -113,7 +113,7 @@ export function NavSidebar() {
               'transition-all duration-150 cursor-pointer text-left',
               pathname === '/profile'
                 ? 'border-[#4F6EF7]/30 bg-[var(--accent-dim)]'
-                : 'hover:border-[var(--border-2)] hover:bg-white',
+                : 'hover:border-(--border-2) hover:bg-(--surface-2)',
             )}
           >
             <Avatar src={user.avatar} name={user.name} size="sm" />
@@ -127,7 +127,7 @@ export function NavSidebar() {
         )}
         <button
           onClick={handleLogout}
-          className="flex items-center gap-3 w-full px-3 py-2 rounded-xl text-[13px] text-[var(--text-muted)] hover:text-red-600 hover:bg-red-50 transition-all duration-150 cursor-pointer"
+          className="flex items-center gap-3 w-full px-3 py-2 rounded-xl text-[13px] text-(--text-muted) hover:text-red-500 hover:bg-red-500/10 transition-all duration-150 cursor-pointer"
         >
           <LogOut size={15} strokeWidth={1.8} />
           Sign out

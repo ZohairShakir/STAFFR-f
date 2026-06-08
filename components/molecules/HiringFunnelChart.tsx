@@ -7,7 +7,7 @@ const SEGMENTS = [
   { key: 'reviewing' as const, label: 'Reviewing', color: 'bg-amber-500', text: 'text-amber-600' },
   { key: 'accepted' as const, label: 'Accepted', color: 'bg-emerald-500', text: 'text-emerald-600' },
   { key: 'rejected' as const, label: 'Rejected', color: 'bg-[#EF4444]', text: 'text-red-600' },
-  { key: 'withdrawn' as const, label: 'Withdrawn', color: 'bg-slate-300', text: 'text-slate-500' },
+  { key: 'withdrawn' as const, label: 'Withdrawn', color: 'bg-slate-400', text: 'text-(--text-muted)' },
 ];
 
 function funnelTotal(f: HiringFunnelReport) {
@@ -62,7 +62,7 @@ export function HiringFunnelChart({ data }: { data: HiringFunnelReport[] }) {
                       <div
                         key={seg.key}
                         className={cn(
-                          'inline-flex items-center gap-1.5 rounded-lg border border-[var(--border)] bg-white px-2.5 py-1',
+                          'inline-flex items-center gap-1.5 rounded-lg border border-(--border) bg-surface px-2.5 py-1',
                           value === 0 && 'opacity-40',
                         )}
                       >
